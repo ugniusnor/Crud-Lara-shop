@@ -12,6 +12,17 @@ body {
 nav {
     height: 10vh !important;
 }
+.myHeader * {
+    color: white !important;
+
+}
+.myHeader {
+    background-color: $bluePurple !important;
+    color: white;
+    .dropdown-item {
+        color: $mdiumPurlple !important;
+    }
+}
 main {
     max-width: 2200px;
     display: grid;

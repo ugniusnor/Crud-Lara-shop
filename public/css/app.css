@@ -11081,6 +11081,19 @@ nav {
   height: 10vh !important;
 }
 
+.myHeader * {
+  color: white !important;
+}
+
+.myHeader {
+  background-color: #6608bd !important;
+  color: white;
+}
+
+.myHeader .dropdown-item {
+  color: mediumpurple !important;
+}
+
 main {
   max-width: 2200px;
   display: grid;
