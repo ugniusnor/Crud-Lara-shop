@@ -1,0 +1,15 @@
+.items-header {
+grid-template-columns: 1fr 1fr 1fr 1fr !important;
+}
+.items-row {
+    grid-template-columns: 1fr 1fr 1fr 1fr !important;
+    grid-template-areas:
+    "type trait1 trait2 actions"
+    "desc desc desc desc"
+    ;
+}
+.description-row {
+    grid-area: desc;
+    margin: 10px 0;
+    width: 100%;
+}

@@ -1,0 +1,49 @@
+.form-container {
+    margin: 0 auto;
+    width: 75%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        input,textarea,option,select {
+            width: 100%;
+            max-width: 500px;
+            margin: 20px 0;
+            height: 30px;
+        }
+        textarea {
+            height: 200px;
+        }
+    }
+}
+.popUp {
+
+    form {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        width: 100%;
+        input,textarea,option,select {
+            width: 100%;
+            max-width: 500px;
+            margin: 20px 0;
+            height: 30px;
+        }
+        textarea {
+            height: 200px;
+        }
+    }
+    .closePop {
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        cursor: pointer;
+    }
+}

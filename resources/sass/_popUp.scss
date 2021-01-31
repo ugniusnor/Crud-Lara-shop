@@ -1,0 +1,12 @@
+.popUp{
+    position: absolute;
+    display: none;
+    max-width: 750px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 80%;
+padding: 15px;
+    border: 1px solid $bluePurple;
+    background-color: $greyIsh;
+}
