@@ -71,14 +71,20 @@ class MasterController extends Controller
             $imageName=$request->name.'-'.time().".".$image->getClientOriginalExtension();
             $path=public_path().'/'.'images'.'/';
             $image->move($path, $imageName);
-            
-        }
+            Master::create([
+                'avatar_url'=>$imageName,
+                'name'=>$request->name,
+                'surname'=>$request->surname,
+              
+            ]);
+        }else {
             Master::create([
                 'name'=>$request->name,
                 'surname'=>$request->surname,
-                'avatar_url'=>$imageName
+              
             
             ]);
+        }
             return redirect()->back()->with('storeStatus', 'successfully inserted');
     }
 
@@ -129,7 +135,9 @@ class MasterController extends Controller
                 $imageName=$request->name.'-'.time().".".$image->getClientOriginalExtension();
                 $path=public_path().'/'.'images'.'/';
                 $image->move($path, $imageName);
-                
+                $master->update([
+                    'avatar_url'=>$imageName
+                ]);
             }
             if ($master->avatar_url) {
                 if((public_path() . '/' . 'images' . '/'.$master->avatar_url)) {
@@ -139,7 +147,7 @@ class MasterController extends Controller
             $master->update([
                 'name'=>$request->name,
                 'surname'=>$request->surname,
-                'avatar_url'=>$imageName
+                
             ]);
             return redirect()->route('master.index')->with('storeStatus', 'successfully updated');
     }
@@ -154,12 +162,13 @@ class MasterController extends Controller
     {
         try {
         // Jeigu autorius turejo nuotrauka ja  istriname
-        if ($master->avatar_url) {
-            if((public_path() . '/' . 'images' . '/'.$master->avatar_url)) {
-                unlink(public_path() . '/' . 'images' . '/'.$master->avatar_url); // unlink PHP funkcija
-            }
-        }
+        
             $master->delete();
+            if ($master->avatar_url) {
+                if((public_path() . '/' . 'images' . '/'.$master->avatar_url)) {
+                    unlink(public_path() . '/' . 'images' . '/'.$master->avatar_url); // unlink PHP funkcija
+                }
+            }
             return redirect()->route('master.index')->with('storeStatus', 'successfully updated');
         }        
         catch (\Illuminate\Database\QueryException $e) {

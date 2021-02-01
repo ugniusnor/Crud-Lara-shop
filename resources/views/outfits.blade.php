@@ -107,7 +107,7 @@
        <label for="">size</label>
         <input value="{{old('size')}}" name="size" placeholder="Quality2" type="text">
         <label for="">Description</label>
-        <textarea value="{{old('about')}}" name="about" id="" cols="30" rows="10" placeholder="About"></textarea>
+        <textarea value="{{old('about')}}" name="about" id="default" cols="30" rows="10" placeholder="About"></textarea>
         <button class="btn-blue"> Submit</button>
 
     </form>
