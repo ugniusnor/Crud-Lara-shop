@@ -66,7 +66,11 @@
             <div class="row-grid-item">{{$outfit->color}}</div>
             <div class="row-grid-item">{{$outfit->size}}</div>
             <div class="row-grid-item row-actions">
-                <div class="btn btn-red"> Delete</div>
+                <form action="{{route('outfit.destroy',[$outfit])}}" method="POST">
+                    @csrf
+                <button type="submit" class="btn btn-red">Delete</button>
+                </form>
+              
                 <a href="{{route('outfit.edit',[$outfit])}}" class="btn btn-green"> Edit</a>
             </div>
             

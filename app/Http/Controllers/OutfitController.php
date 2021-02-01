@@ -145,6 +145,14 @@ class OutfitController extends Controller
      */
     public function destroy(Outfit $outfit)
     {
-        //
+        try {
+            $outfit->delete();
+            return redirect()->route('outfit.index')->with('storeStatus', 'successfully deleted');
+
+        }        
+        catch (\Illuminate\Database\QueryException $e) {
+            return redirect()->back()->withErrors(['Failed to delete outfit']);
+            
+        }
     }
 }

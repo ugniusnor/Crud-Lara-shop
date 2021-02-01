@@ -39,11 +39,12 @@
             @foreach ($masters as $master)
             <h2>Edit {{$master->name}} details</h2>
                 
-            <form action="{{route('master.update',[$master->id])}}" method="POST">
+            <form action="{{route('master.update',[$master->id])}}" method="POST"  enctype="multipart/form-data">
                 @csrf
                 <input name="name" placeholder="{{$master->name}}" type="text" value="{{$master->name}}">
                 <input name="surname" placeholder="{{$master->surname}}" type="text" value="{{$master->surname}}">
-                
+                <label for="">Avatar</label>
+                <input id="image" type="file" name="image">
                 <button type="submit" class="btn btn-blue"> Submit</button>
             </form>
             @endforeach

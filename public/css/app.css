@@ -11041,7 +11041,7 @@ button {
 }
 
 .err {
-  flex-direction: column !important;
+  flex-direction: row !important;
   background-color: rgba(214, 126, 126, 0.8);
   color: red;
 }
@@ -11142,6 +11142,7 @@ main .main-container .main-wrapper Outfits .main-wrapper-header {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr;
+  padding: 15px;
   align-items: center;
 }
 
@@ -11201,6 +11202,21 @@ main .main-container .main-container-row .row-grid-item {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+main .main-container .main-container-row .row-grid-item .avatar-img {
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+  background-color: red;
+  background-image: url(/images/defaultAvatar.svg?c2fc30b512d020955b1aff3ac15f55c3);
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+main .main-container .main-container-row .row-grid-item .avatar-img img {
+  width: 100%;
+  height: 100%;
 }
 
 main .main-container .main-container-row .row-actions {
@@ -11319,6 +11335,7 @@ main .main-container .main-container-row .row-actions {
 
 .main-wrapper-header {
   border-bottom: 1px solid black;
+  padding: 15px;
   margin-bottom: 15px;
   width: 100%;
   display: grid;

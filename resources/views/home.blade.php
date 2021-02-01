@@ -66,14 +66,20 @@
          <div class="main-wrapper-header">
             <div class="header-grid-item">Name</div>
             <div class="header-grid-item">Surname</div>
-            <div class="header-grid-item">Active Jobs</div>
+            <div class="header-grid-item">Avatar</div>
             <div class="header-grid-item">Actions</div>
          </div>
          @foreach ($masters as $master)
          <div class="main-container-row">
              <div class="row-grid-item">{{$master->name}}</div>
              <div class="row-grid-item">{{$master->surname}}</div>
-             <div class="row-grid-item">0</div>
+             <div class="row-grid-item">
+                 <div class="avatar-img">
+                @if ($master->avatar_url)
+                <img src="{{asset("images/$master->avatar_url")}}" alt="">                    
+                @endif
+                 </div>
+             </div>
             <div class="row-grid-item row-actions">
             
                  <form action="{{route('master.destroy',[$master])}}" method="POST">
@@ -104,13 +110,14 @@
 
 <div>
     <div class="popUp">
-        <form action="/masters/store" method="post">
+        <form action="/masters/store" method="post" enctype="multipart/form-data">
             @csrf
             <label for="">Name</label>
              <input name="name" placeholder="Name" type="text" value="">
             <label for="">Surname</label>
              <input name="surname" placeholder="Surname" type="text" value="">
-         
+             <label for="">Avatar</label>
+            <input id="image" type="file" name="image">
              <button class="btn-blue"> Submit</button>
          </form>
          <div class="closePop"> X </div> 

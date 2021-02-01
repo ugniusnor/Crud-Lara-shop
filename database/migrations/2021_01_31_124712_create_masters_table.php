@@ -17,6 +17,7 @@ class CreateMastersTable extends Migration
             $table->id();
             $table->string('name',64);
             $table->string('surname',64);
+            $table->string('avatar_url', 80)->nullable();
             $table->timestamps();
         });
     }

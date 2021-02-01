@@ -1,7 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use Illuminate\Support\Facades\Storage;
 use App\Models\Master;
 use App\Models\Outfit;
 use Illuminate\Http\Request;
@@ -64,11 +64,19 @@ class MasterController extends Controller
             'name'=>'required',
             'surname'=>'required',        
             ]);
-         
-        
+            
+        if($request->has('image')) {
+          
+            $image=$request->file('image');
+            $imageName=$request->name.'-'.time().".".$image->getClientOriginalExtension();
+            $path=public_path().'/'.'images'.'/';
+            $image->move($path, $imageName);
+            
+        }
             Master::create([
                 'name'=>$request->name,
                 'surname'=>$request->surname,
+                'avatar_url'=>$imageName
             
             ]);
             return redirect()->back()->with('storeStatus', 'successfully inserted');
@@ -115,10 +123,23 @@ class MasterController extends Controller
             'name'=>'required',
             'surname'=>'required',        
             ]);
+            if($request->has('image')) {
           
+                $image=$request->file('image');
+                $imageName=$request->name.'-'.time().".".$image->getClientOriginalExtension();
+                $path=public_path().'/'.'images'.'/';
+                $image->move($path, $imageName);
+                
+            }
+            if ($master->avatar_url) {
+                if((public_path() . '/' . 'images' . '/'.$master->avatar_url)) {
+                    unlink(public_path() . '/' . 'images' . '/'.$master->avatar_url); // unlink PHP funkcija
+                }
+            }
             $master->update([
                 'name'=>$request->name,
                 'surname'=>$request->surname,
+                'avatar_url'=>$imageName
             ]);
             return redirect()->route('master.index')->with('storeStatus', 'successfully updated');
     }
@@ -132,7 +153,14 @@ class MasterController extends Controller
     public function destroy(Master $master)
     {
         try {
+        // Jeigu autorius turejo nuotrauka ja  istriname
+        if ($master->avatar_url) {
+            if((public_path() . '/' . 'images' . '/'.$master->avatar_url)) {
+                unlink(public_path() . '/' . 'images' . '/'.$master->avatar_url); // unlink PHP funkcija
+            }
+        }
             $master->delete();
+            return redirect()->route('master.index')->with('storeStatus', 'successfully updated');
         }        
         catch (\Illuminate\Database\QueryException $e) {
             return redirect()->back()->withErrors(['Master has standing job']);
