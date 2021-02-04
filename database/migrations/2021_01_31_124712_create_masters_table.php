@@ -21,7 +21,7 @@ class CreateMastersTable extends Migration
             $table->timestamps();
         });
     }
-env
+
     /**
      * Reverse the migrations.
      *
